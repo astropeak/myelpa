@@ -1,20 +1,35 @@
-* myelpa
-Emacs package repository backup used by [[https://github.com/redguardtoo/emacs.d]]
+* myelpa (version 0.0.1)
+The emacs packages I'm using.
+
 * Usage
-You can use this repository either as remote repository or local repository.
-** Used as remote repository
-Add below code into =.emacs= and restart Emacs,
-#+begin_src elisp
-(add-to-list 'package-archives
-             ("myelpa" . "https://raw.githubusercontent.com/redguardtoo/myelpa/master/" ))
-#+end_src
-** Used as local repository
-Step 1, run below command in shell,
-#+begin_src bash
-git clone https://github.com/redguardtoo/myelpa.git /what-ever-directory-you-like/myelpa
-#+end_src
-Step 2, Add below code into =.emacs= and restart Emacs,
-#+begin_src elisp
-(add-to-list 'package-archives
-             ("myelpa" . "/what-ever-directory-you-like/myelpa/" ))
-#+end_src
+** Solution 1
+- Click "Download ZIP"
+- Extract zip somewhere say "~/myelpa".
+- Double check that there is a file name "archive-contents" in the directory "~/myelpa".
+- insert below code into end of ~/.emacs.d/init.el or ~/.emacs.
+#+BEGIN_SRC bash
+(setq package-archives '(("myelpa" . "~/myelpa/")))
+#+END_SRC
+
+This solution *does not need* internet connection.
+** Solution 2
+Add below line into ~/.emacs:
+#+BEGIN_SRC elisp
+(setq package-archives '(("myelpa" . "https://raw.github.com/redguardtoo/myelpa/master/")))
+#+END_SRC
+
+Then you will use exact same packages I'm using. No more, no less.
+
+This solution *need* internet connection.
+* Warning
+The variable "package-archives" should have only one repository "myelpa".
+
+So you need place above code behind the code manipulating package-archives:
+#+BEGIN_SRC elisp
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+#+END_SRC
+
+Or 
+#+BEGIN_SRC elisp
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+#+END_SRC
